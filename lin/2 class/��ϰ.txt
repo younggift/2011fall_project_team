@@ -1,0 +1,44 @@
+class Original
+{
+ protected int Orig_i;
+ protected String Orig_str;
+ public Original()
+ {
+  Orig_i = 0;
+  Orig_str = "";
+ }
+ public Original(int Orig_i,String Orig_str)
+ {
+  this.Orig_i = Orig_i;
+  this.Orig_str = Orig_str;
+ }
+}
+public class Inherit extends Original
+{
+ private String In_str;
+ public Inherit()
+ {
+  super();
+ }
+ public Inherit(int Orig_i,String Orig_str)
+ {
+  super(Orig_i,Orig_str);
+ }
+ public Inherit(int Orig_i,String Orig_str,String In_str)
+ {
+  this(Orig_i,Orig_str);
+  //super(Orig_i,Orig_str);
+  //也可以用super调用基类的构造方法,也可以通过this调用子类的重载的构造方法.
+  this.In_str = In_str;
+ }
+ public void getInfo()
+ {
+  System.out.println("Orig_i = " + Orig_i + ", Orig_str = " + Orig_str + ", In_str = " + In_str);
+ }
+ public static void main(String[] args) 
+ {
+  new Inherit().getInfo();
+  new Inherit(2,"Original").getInfo();
+  new Inherit(3,"Original","Inherit").getInfo();
+ }
+}
