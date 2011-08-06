@@ -25,13 +25,13 @@ public class ParameterTest
 	{
 		Circle p=new Circle();
 		int xValue=-1,yValue=-1;
-		System.out.println("zhi chuan di£º");
+		System.out.println("zhi chuan di:");
 		p.setXY(xValue,yValue);
 		System.out.println("xValue="+xValue+",yValue="+yValue);
 
 		Point point=new Point();
 		p.setPoint(point);
-		System.out.println("di zhi chuan di£º");
+		System.out.println("di zhi chuan di:");
 		System.out.println("point.x="+point.x+",point.y="+point.y);
 	}
 };
