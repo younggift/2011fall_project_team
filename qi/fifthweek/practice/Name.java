@@ -16,4 +16,4 @@ public class  Name
 		person2.name="maomao";
 		System.out.println("person1.salary="+person1.name+"  person2.salary="+person2.name);
 	}
-}
+};
