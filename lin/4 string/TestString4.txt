@@ -1,0 +1,9 @@
+public class TestString4
+{
+    public static void main(String args[]) 
+    {
+       String s1 = new String("abcdefghij");
+       String s2 = new String("ghij");
+       System.out.println("s1.endsWith(s2): " + s1.endsWith(s2) );
+     }
+}

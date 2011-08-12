@@ -1,0 +1,46 @@
+import java.io.*;
+import java.math.*;
+import java.util.*;
+import java.text.*;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner cin = new Scanner(System.in);
+        char c;
+        int testCase, i, w;
+        BigInteger ba1, ba2, t, sum;
+        testCase = cin.nextInt();
+        while((testCase --) != 0){
+            ba1 = cin.nextBigInteger();     //  读入大数。
+            ba2 = cin.nextBigInteger();
+            String st = cin.next();         //  读入字符串，无空格，而cin.nextline()有。
+            t = new BigInteger("1");        //  等价于 t = BigInteger.valueOf(1)。
+            sum = new BigInteger("0");
+            for(i = st.length() - 1; i >= 0; i --){      //  先将num转换为10进制。
+                c = st.charAt(i);
+                if(c >= '0' && c <= '9')  w = c - '0';
+                else if(c >= 'A' && c <= 'Z') w = c - 'A' + 10;
+                else w = c - 'a' + 36;
+                sum = sum.add(BigInteger.valueOf(w).multiply(t));
+                t = t.multiply(ba1);
+            }
+            BigInteger zero = BigInteger.valueOf(0); 
+            int top = 0, stack[] = new int[2000];
+            while(sum.compareTo(zero) != 0){             //  转化为ba2进制的数，存在stack[]中。
+                stack[++ top] = sum.mod(ba2).intValue();
+                sum = sum.divide(ba2);
+            }
+            System.out.print(ba1+" "+st+"\n"+ba2+" ");
+            if(top == 0) System.out.print(0);            //  要注意为0的情况。
+            while(top != 0){                             //  按所给字符输出。
+                w = stack[top --];
+                if(w < 10) c = (char)('0' + w);
+                else if(w < 36) c = (char)(w - 10 + 'A');
+                else c = (char)(w - 36 + 'a');
+                System.out.print(c);
+            }
+            System.out.print("\n\n");
+        }
+        System.exit(0);
+    }
+}
