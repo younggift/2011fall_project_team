@@ -17,6 +17,10 @@ class Operate{          //该程序进行的是布雷（也就是初始化雷区），排雷等相关的操
 	}
 	//以下是对于界面的初始化；
 	public void init(){
+		for(int i=0;i<row;i++)
+            for(int j=0;j<column;j++){
+                    this.lei[i][j]=0;                 
+            }
 		int sum=0;
 		while(sum<5){  //简单起见，就设定五个雷；
 			int x;
@@ -88,11 +92,67 @@ class Operate{          //该程序进行的是布雷（也就是初始化雷区），排雷等相关的操
 		System.out.println("------------");
 	}
 	public void beginOperate(){
-		
+		int k;
+		for(k=0;k<25;k++){
+			this.printJieMian();
+			System.out.print("请输入：W代表挖雷，P代表插旗，例如：W34表示挖该坐标为34的位置");
+			Scanner string = new Scanner(System.in);
+			String line = string.nextLine();
+			String instruction = line.substring(0, 1);
+			String zuobiao = line.substring(1,3);
+			if(instruction.equals("W")){
+				int x = Integer.parseInt(zuobiao.substring(0,1));
+				int y = Integer.parseInt(zuobiao.substring(1,2));
+				boolean flag = this.walei(x,y);
+				if(flag){
+					break;
+				}
+			}else if(instruction.equals("P")){
+					int x = Integer.parseInt(zuobiao.substring(0,1));
+					int y = Integer.parseInt(zuobiao.substring(1,2));
+					this.chaqi(x,y);
+			}else{
+				System.out.println("Error!请重新输入:");
+			}
+		}
+		if(k==25){
+			System.out.println("恭喜闯关成功");
+		}
+		this.init();
+	}
+	public boolean walei(int x,int y){
+		if(this.lei[x][y]==-1){			
+			explode();
+			return true;
+		}else if(this.lei[x][y]==0){
+			this.jiemian[x][y]=(char)(this.lei[x][y]+'0');
+		}else{
+			this.jiemian[x][y]=(char)(this.lei[x][y]+'0');
+		}
+		printJieMian();
+		return false;
+	}
+	public void explode(){
+		for(int i=0;i<row;i++)
+			for(int j=0;j<column;j++){
+				if(this.lei[i][j]==-1){
+					if(this.jiemian[i][j]!='P'){
+						this.jiemian[i][j]='*';
+					}
+				}
+			}
+		this.printJieMian();
+		System.out.println("很遗憾！游戏失败！");
+	}
+	public void chaqi(int x,int y){
+		this.jiemian[x][y]='P';
 	}
 }
 class PlayGame{
 	public Operate operate;
+	public PlayGame(){
+		this.operate = new Operate();
+	}
 	public void begin(){
 		System.out.println("欢迎进入好玩的扫雷游戏：输入0退出，输入1开始游戏，输入2寻求帮助");
 	}
@@ -109,15 +169,12 @@ class PlayGame{
 			if(option==0){
 				System.out.println("您已经退出游戏");
 				System.exit(0);
-			}
-			if(option==1){
+			}else if(option==1){
 				this.operate.beginOperate();
-			}
-			if(option==2){
+			}else if(option==2){
 				help();
-			}
-			if(option!=0&&option!=1&&option!=2){
-				System.out.println("error!请重新输入");
+			}else{
+				System.out.println("Error!请重新输入");
 			}
 		}
 	}
