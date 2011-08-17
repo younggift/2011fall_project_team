@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Operate {          //该程序进行的是布雷（也就是初始化雷区），排雷等相关的操作；
+class Operate{          //该程序进行的是布雷（也就是初始化雷区），排雷等相关的操作；
 	public final int row = 5;   //以下为了初始化雷区要先定义一个5*5的二维数组；
 	public final int column = 5;
 	public int [][] lei;
@@ -74,6 +74,14 @@ public class Operate {          //该程序进行的是布雷（也就是初始化雷区），排雷等
 				this.jiemian[i][j]='O';
 			}
 	}
-	
-
+}
+class PlayGame{
+	public void start(){
+		
+	}
+}
+public class SaoLei{
+	public static void main(String[] args) {
+		new PlayGame().start();
+	}
 }
