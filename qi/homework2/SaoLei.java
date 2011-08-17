@@ -74,10 +74,52 @@ class Operate{          //该程序进行的是布雷（也就是初始化雷区），排雷等相关的操
 				this.jiemian[i][j]='O';
 			}
 	}
+	public void printJieMian(){
+		System.out.println("------------");
+		System.out.print(" ");
+		for(int j=0;j<column;j++) System.out.print(" "+j);
+		System.out.println();
+		for(int i=0;i<row;i++){
+			System.out.print(i);
+			for(int j=0;j<column;j++)
+				System.out.print(" "+this.jiemian[i][j]);
+			System.out.print("\n");
+		}
+		System.out.println("------------");
+	}
+	public void beginOperate(){
+		
+	}
 }
 class PlayGame{
+	public Operate operate;
+	public void begin(){
+		System.out.println("欢迎进入好玩的扫雷游戏：输入0退出，输入1开始游戏，输入2寻求帮助");
+	}
+	public void help(){
+		System.out.println("很高兴给您提供帮助");
+	}
 	public void start(){
-		
+		int option=0;
+		while(true){
+			begin();
+			System.out.print("请输入0或1或2：");
+			Scanner input = new Scanner(System.in);
+			option = input.nextInt();
+			if(option==0){
+				System.out.println("您已经退出游戏");
+				System.exit(0);
+			}
+			if(option==1){
+				this.operate.beginOperate();
+			}
+			if(option==2){
+				help();
+			}
+			if(option!=0&&option!=1&&option!=2){
+				System.out.println("error!请重新输入");
+			}
+		}
 	}
 }
 public class SaoLei{
