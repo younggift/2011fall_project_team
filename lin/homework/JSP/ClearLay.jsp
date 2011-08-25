@@ -114,7 +114,7 @@
            }  
            out.print("**********************");  
            out.print("<BR>");
-           out.println("Game Over!"+"<BR>");
+           out.print("Game Over!"+"<BR>");
         }
         else{
            face[xx][yy]=(char)('0'+mines[xx][yy]);
@@ -133,7 +133,7 @@
            }  
            out.print ("**********************");  
            out.print("<BR>");
-           out.println("Congratulation!"+"<BR>");
+           out.print("Congratulation!"+"<BR>");
         } 
     }
 
