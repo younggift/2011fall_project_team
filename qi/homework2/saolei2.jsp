@@ -7,13 +7,14 @@
   </head>
   
   <body BGCOLOR=pink>
-    <% 
+<% 
       int [][]lei=new int [5][5];
       char [][]jiemian=new char[5][5];
-      for(int i=0;i<5;i++)
+      for(int i=0;i<5;i++){
       for(int j=0;j<5;j++)
       {
           lei[i][j]=0;
+      }
       }
       int sum=0;
       while(sum<5){
@@ -35,66 +36,71 @@
      }
      out.print("<br>");
      }*/
-for(int i=0;i<5;i++)
+for(int i=0;i<5;i++){
 for(int j=0;j<5;j++){
   jiemian[i][j]='+';
 }
+}
       String s1 = request.getParameter("x");
       String s2 = request.getParameter("y");
+      String str1 = request.getParameter("sub1");
+      String str2 = request.getParameter("sub2");
       int xx=Integer.parseInt(s1);
       int yy=Integer.parseInt(s2);   
-     out.print("您要挖的雷的位置横坐标为 :" + xx +"<br>");		
-     out.print("您要挖的雷的位置纵坐标为: "+ yy +"<br>");	
-    if(lei[xx][yy]==-1){
-           for(int i=0;i<5;i++)
-           for(int j=0;j<5;j++)
-           {
-           if(lei[i][j]==-1)
-               jiemian[i][j]='*';
-          }
-          for(int i=0;i<5;i++){         
-          for(int j=0;j<5;j++)        
-          {
-                out.print(" "+jiemian[i][j]);
-          }
-          out.print("<br>");
-          }
-          out.print("很遗憾，游戏失败了");
-       }
-       else{
-          for(int i=0;i<5;i++){
-        for(int j=0;j<5;j++){
-          if(lei[i][j]!=-1){
-                   int number=0;
-                   if((i-1)>=0&&(i-1)<5&&(j-1)>=0&&(j-1)<5){
+      if(str1!=null)
+      {
+           out.print("您要挖的雷的位置横坐标为 :" + xx +"<br>");		
+           out.print("您要挖的雷的位置纵坐标为: "+ yy +"<br>");	
+           if(lei[xx][yy]==-1){
+                for(int i=0;i<5;i++){
+                for(int j=0;j<5;j++)
+                {
+                   if(lei[i][j]==-1)
+                   jiemian[i][j]='*';
+                }
+                }
+                for(int i=0;i<5;i++){         
+                for(int j=0;j<5;j++)        
+                {
+                     out.print(" "+jiemian[i][j]);
+                }
+                out.print("<br>");
+                }
+                out.print("很遗憾，游戏失败了");
+            }
+            else{
+              for(int i=0;i<5;i++){
+              for(int j=0;j<5;j++){
+                    if(lei[i][j]!=-1){
+                         int number=0;
+                         if((i-1)>=0&&(i-1)<5&&(j-1)>=0&&(j-1)<5){
                          if(lei[i-1][j-1]==-1) number++;
-                   }
-                   if((i-1)>=0&&(i-1)<5&&j>=0&&j<5){
+                         }
+                         if((i-1)>=0&&(i-1)<5&&j>=0&&j<5){
                          if(lei[i-1][j]==-1) number++;
-                   } 
-                   if((i-1)>=0&&(i-1)<5&&(j+1)>=0&&(j+1)<5){
+                         } 
+                         if((i-1)>=0&&(i-1)<5&&(j+1)>=0&&(j+1)<5){
                          if(lei[i-1][j+1]==-1) number++;
-                   }      
-                   if(i>=0&&i<5&&(j-1)>=0&&(j-1)<5){
+                        }      
+                         if(i>=0&&i<5&&(j-1)>=0&&(j-1)<5){
                          if(lei[i][j-1]==-1) number++;
-                   }     
-                   if(i>=0&&i<5&&(j+1)>=0&&(j+1)<5){
+                        }     
+                         if(i>=0&&i<5&&(j+1)>=0&&(j+1)<5){
                          if(lei[i][j+1]==-1) number++;
-                   }   
-                   if((i+1)>=0&&(i+1)<5&&(j-1)>=0&&(j-1)<5){
+                        }   
+                         if((i+1)>=0&&(i+1)<5&&(j-1)>=0&&(j-1)<5){
                          if(lei[i+1][j-1]==-1) number++;
-                   } 
-                   if((i+1)>=0&&(i+1)<5&&j>=0&&j<5){
+                         } 
+                         if((i+1)>=0&&(i+1)<5&&j>=0&&j<5){
                          if(lei[i+1][j]==-1) number++;
-                   } 
-                   if((i+1)>=0&&(i+1)<5&&(j+1)>=0&&(j+1)<5){
+                         } 
+                         if((i+1)>=0&&(i+1)<5&&(j+1)>=0&&(j+1)<5){
                          if(lei[i+1][j+1]==-1) number++;
-                   }  
-                   lei[i][j]=number;             
-          }
-      }
-      }
-    
+                         }  
+                         lei[i][j]=number;             
+                       }
+                   }
+                }   
               jiemian[xx][yy]=(char)(lei[xx][yy]+'0');
   
            for(int i=0;i<5;i++){         
@@ -104,7 +110,19 @@ for(int j=0;j<5;j++){
           }
           out.print("<br>");
           }
-} 
+    }
+    }
+          if(str2!=null)
+          {
+            jiemian[xx][yy]='P';
+            for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++)
+            {
+               out.print(" "+jiemian[i][j]);
+            }
+            out.print("<br>");
+            }
+          } 
 %>
   </body>
 </html>
