@@ -1,12 +1,15 @@
+import java.util.Scanner;
 
-public class Star {
+public class star {
 	public static void main(String[] args) {
-		for(int i=1;i<=4;i++)
-        {
-			for(int j=1;j<=i;j++)					
-				System.out.print("*");			
-			System.out.println(" ");	
-        }
+		Scanner input = new Scanner(System.in);
+		int m =  input.nextInt(); 
+		for(int j=0;j<=m;j++){
+			for(int i=0;i<j;i++){
+			    System.out.print("*");
+			    }
+			   System.out.println(" ");
+		}
 	}
 
 }
