@@ -26,10 +26,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 int k=1; 
 		   for(int j=0;j<20;j++){ 
 		     for(int i=0;i<k;i++){ 
-		        out.print("*"); 
+		        System.out.print("*"); 
 	        } 
 		       
-		     out.write("\n"); 
+		     System.out.print("\n"); 
 		        k++; 
 	      } 
 	
