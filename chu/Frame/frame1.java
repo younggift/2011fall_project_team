@@ -122,7 +122,7 @@ class Operate{
 			}
 		}
 		if(k==25){
-			System.out.println("恭喜闯关成功");  
+			System.out.println("闯关成功");  
 		}
 		this.init(); 
 	public boolean walei(int x,int y){
@@ -146,7 +146,7 @@ class Operate{
 				}
 			}
 		this.printJieMian();   
-		System.out.println("很遗憾！游戏失败！");  
+		System.out.println("游戏失败！");  
 	}
 	
 	public void chaqi(int x,int y){
@@ -161,7 +161,7 @@ class PlayGame{
 	}
 	
 	public void begin(){
-		System.out.println("欢迎进入好玩的扫雷游戏：输入0退出，输入1开始游戏，输入2寻求帮助");
+		System.out.println("输入0退出，输入1开始游戏，输入2帮助");
 	}
 	public void help(){
 		System.out.println("很高兴给您提供帮助");
