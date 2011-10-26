@@ -7,7 +7,6 @@ class  Mine_Clearance
 {
 	public static void main(String[] args) 
 	{
-		new PlayGame().Play();
 	}
 }
 
@@ -39,7 +38,7 @@ class Mine
 	//判断是否越界
 	//本来我是想利用数组在存储时是储存在一段连续地址中，这一特点来判断越界情况
 	//上面方法和下面这方法相比仅需考虑：头尾两种越界情况
-	public boolean Over(int i,int j)
+	public boolean over(int i,int j)
 	{
 		if(i>=row || i<0 || j>=line || j<0)
 			return true;
@@ -66,35 +65,35 @@ class Mine
 				sum++;
 				//以下8个判断语句用来统计某一位置周围雷的个数
 				//每产生一个雷就让周围八个位置计数，进行++操作
-				if(!this.Over(i-1,j))
+				if(!this.over(i-1,j))
 				{
 					this.mine[i-1][j]++;
 				}
-				if(!this.Over(i+1,j))
+				if(!this.over(i+1,j))
 				{
 					this.mine[i+1][j]++;
 				}
-				if(!this.Over(i,j+1))
+				if(!this.over(i,j+1))
 				{
 					this.mine[i][j+1]++;
 				}
-				if(!this.Over(i,j-1))
+				if(!this.over(i,j-1))
 				{
 					this.mine[i][j-1]++;
 				}
-				if(!this.Over(i-1,j-1))
+				if(!this.over(i-1,j-1))
 				{
 					this.mine[i-1][j-1]++;
 				}
-				if(!this.Over(i+1,j-1))
+				if(!this.over(i+1,j-1))
 				{
 					this.mine[i+1][j-1]++;
 				}
-				if(!this.Over(i-1,j+1))
+				if(!this.over(i-1,j+1))
 				{
 					this.mine[i-1][j+1]++;
 				}
-				if(!this.Over(i+1,j+1))
+				if(!this.over(i+1,j+1))
 				{
 					this.mine[i+1][j+1]++;
 				}
@@ -123,57 +122,18 @@ public void Print_limsurface(){
 	}
 	//输出界面方法结束
 
-	public void Begin()
+	public void begin()
 		//这个方法的名字再改
 	//在该方法中进行的操作主要是接受用户输入，并对该输入进行相应的处理
 	{
-		//游戏退出当满足 踩到雷或成功挖了90次退出
-		int Dignum = 0;
-		//每调用一次Dig方法++
-		Item:
-		for(Dignum = 0;Dignum < 90;Dignum++)
-		{
-		this.Print_limsurface();
-		System.out.println("请输入要执行的操作！输入格式：要执行的操作+坐标，如要挖（3，4）位置的雷输入D34。");
-		Scanner sc = new Scanner(System.in);
-		//获取用户输入信息
-		String input = sc.nextLine();
-		//将输入的标记转换为String型
-		String operate = input.substring(0,1);
-		//获取要执行的操作
-		String coordinate = input.substring(1);
-		//获取操作对象
-		int x = Integer.parseInt(coordinate.substring(0,1));
-		int y = Integer.parseInt(coordinate.substring(1,2));
-		//获取 x y
-		if(operate.equals("D"))
-		{
-			Print_limsurface();
-			boolean status = this.Dig(x,y);
-			//用变量status来记录是否挖到雷
-			if(!status)
-			{break Item;}
-			else
-			{
-				if(operate.equals("F"))
-				{
-					this.Flag(x,y);
-				}
-				else
-				{System.out.println("INPUT ERROR!");}
-			}
-		}
-		}
-		System.out.println("同学 你过关了！");
-		this. Initialize();
-		}
+	}
 
 	//挖雷方法开始
 	public boolean Dig(int x,int y)
 	{
 		if(this.mine[x][y]==-1)
 		{
-			Explode();
+			explode();
 			return false;
 			//挖到雷则执行explode方法并返回false
 			}
@@ -182,21 +142,21 @@ public void Print_limsurface(){
 			if(this.mine[x][y]==0)
 				//若mine[x][y]==0则挖其周围八个位置，这样就会在点到0时出现一片空白
 			{
-				if(!this.Over(x-1,y))
+				if(!this.over(x-1,y))
 				{Dig(x-1,y);}
-				if(!this.Over(x-1,y-1))
+				if(!this.over(x-1,y-1))
 				{Dig(x-1,y-1);}
-				if(!this.Over(x-1,y+1))
+				if(!this.over(x-1,y+1))
 				{Dig(x-1,y+1);}
-				if(!this.Over(x,y-1))
+				if(!this.over(x,y-1))
 				{Dig(x,y-1);}
-				if(!this.Over(x,y+1))
+				if(!this.over(x,y+1))
 				{Dig(x,y+1);}
-				if(!this.Over(x+1,y-1))
+				if(!this.over(x+1,y-1))
 				{Dig(x+1,y-1);}
-				if(!this.Over(x+1,y+1))
+				if(!this.over(x+1,y+1))
 				{Dig(x+1,y+1);}
-				if(!this.Over(x+1,y))
+				if(!this.over(x+1,y))
 				{Dig(x+1,y);}
 			}
 			else
@@ -211,7 +171,7 @@ public void Print_limsurface(){
 	//挖雷方法结束
 
 	//explode方法
-	public void Explode()
+	public void explode()
 	{
 		int i = 0,j = 0;
 		for (i = 0;i < this.row;i++)
@@ -226,12 +186,11 @@ public void Print_limsurface(){
 		}
 		this.Print_limsurface();
 		System.out.println("同学你踩到雷了！");
-		this.Initialize();
 	}
 	//explode方法结束
 
 	//flag方法 用于插旗
-	public void Flag(int x,int y)
+	public void flag(int x,int y)
 	{
 		this.mine2[x][y] = 'F';
 	}
@@ -239,19 +198,3 @@ public void Print_limsurface(){
 }
 
 //***************************************************************//
-class PlayGame
-{
-	public Mine mine;
-
-//构造函数
-	public PlayGame()
-	{
-		Mine mine = new Mine();
-	}
-
-	public void Play()
-	{
-		//Scanner sc = new Scanner(System.in);
-		this.mine.Begin();
-	}
-}
