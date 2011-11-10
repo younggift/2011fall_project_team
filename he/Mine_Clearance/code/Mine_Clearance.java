@@ -74,35 +74,35 @@ class Mine
 					sum++;
 				//以下8个判断语句用来统计某一位置周围雷的个数
 				//每产生一个雷就让周围八个位置计数，进行++操作
-				if((this.mine[i-1][j]!=-1)&&!(this.Over(i-1,j)))
+				if(!(this.Over(i-1,j))&&(this.mine[i-1][j]!=-1))
 				{
 					this.mine[i-1][j]++;
 				}
-				if((this.mine[i+1][j]!=-1)&&!(this.Over(i+1,j)))
+				if(!(this.Over(i+1,j))&&(this.mine[i+1][j]!=-1))
 				{
 					this.mine[i+1][j]++;
 				}
-				if((this.mine[i][j+1]!=-1)&&!(this.Over(i,j+1)))
+				if(!(this.Over(i,j+1))&&(this.mine[i][j+1]!=-1))
 				{
 					this.mine[i][j+1]++;
 				}
-				if((this.mine[i][j-1]!=-1)&&(!this.Over(i,j-1)))
+				if((!this.Over(i,j-1))&&(this.mine[i][j-1]!=-1))
 				{
 					this.mine[i][j-1]++;
 				}
-				if((this.mine[i-1][j-1]!=-1)&&(!this.Over(i-1,j-1)))
+				if((!this.Over(i-1,j-1))&&(this.mine[i-1][j-1]!=-1))
 				{
 					this.mine[i-1][j-1]++;
 				}
-				if((this.mine[i+1][j-1]!=-1)&&(!this.Over(i+1,j-1)))
+				if((!this.Over(i+1,j-1))&&(this.mine[i+1][j-1]!=-1))
 				{
 					this.mine[i+1][j-1]++;
 				}
-				if((this.mine[i-1][j+1]!=-1)&&(!this.Over(i-1,j+1)))
+				if((!this.Over(i-1,j+1))&&(this.mine[i-1][j+1]!=-1))
 				{
 					this.mine[i-1][j+1]++;
 				}
-				if((this.mine[i+1][j+1]!=-1)&&(!this.Over(i+1,j+1)))
+				if((!this.Over(i+1,j+1))&&(this.mine[i+1][j+1]!=-1))
 				{
 					this.mine[i+1][j+1]++;
 				}				
@@ -144,7 +144,7 @@ public void Print_limsurface(){
 		//游戏退出当满足 踩到雷或成功挖了90次退出
 		int Dignum = 0;
 		//每调用一次Dig方法++
-		Item:
+		//Item:
 		for(Dignum = 0;Dignum < 90;Dignum++)
 		{
 		this.Print_limsurface();
@@ -193,32 +193,7 @@ public void Print_limsurface(){
 			}
 		else
 		{
-			if(this.mine[x][y]==0)
-				//若mine[x][y]==0则挖其周围八个位置，这样就会在点到0时出现一片空白
-			{
-				if(!this.Over(x-1,y))
-				{Dig(x-1,y);}
-				if(!this.Over(x-1,y-1))
-				{Dig(x-1,y-1);}
-				if(!this.Over(x-1,y+1))
-				{Dig(x-1,y+1);}
-				if(!this.Over(x,y-1))
-				{Dig(x,y-1);}
-				if(!this.Over(x,y+1))
-				{Dig(x,y+1);}
-				if(!this.Over(x+1,y-1))
-				{Dig(x+1,y-1);}
-				if(!this.Over(x+1,y+1))
-				{Dig(x+1,y+1);}
-				if(!this.Over(x+1,y))
-				{Dig(x+1,y);}
-			}
-			else
-				//若mine[x][y]为数字则对mine2[x][y]重新赋值并返回ture
-			{
 				this.mine2[x][y] = (char)(this.mine[x][y]+'0');
-				
-			}
 			return true;
 		}
 	}
