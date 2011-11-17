@@ -7,7 +7,7 @@
 </head>
 <body bgcolor=cyan>
 <div align="center">
-<p><font color="#990000" size="+2"><u>调查系统维护中心</u></font>
+<p><font color="#990000" size="+2"><u>调查问卷系统维护中心</u></font>
 </p>
 <%
 ResultSet tempRs=connDbBean.executeQuery("SELECT id,note FROM vote Order BY id");
