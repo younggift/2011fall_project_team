@@ -6,7 +6,9 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 	JMenuBar jMenuBar1 = new JMenuBar();
 	JMenu jMenu1 = new JMenu();
 	JMenu jMenuhelp = new JMenu();
-	JMenuItem jMenubegin = new JMenuItem();
+	JMenu jMenubegin = new JMenu();
+	JMenuItem jMenufirst = new JMenuItem();
+	JMenuItem jMenusecond = new JMenuItem();
 	JMenuItem jMenuabout = new JMenuItem();
 	JMenuItem jMenuexit =  new JMenuItem();
 
@@ -15,18 +17,30 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 	JPanel contentPane;
 	public Huarongdao()
 	{
-		init();
+		init(100,50,100,100,100,200,100,50,50,50,50,100,200,50,50,100,50,150,50,100,200,150,50,100,50,250,50,50,100,250,50,50,
+			 150,250,50,50,200,250,50,50);
 		setBounds(300,200,320,420);
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	public void init()
+	public void init(int para1,int para2,int para3,int para4,
+					 int para5,int para6,int para7,int para8,
+					 int para9,int para10,int para11,int para12,
+					 int para13,int para14,int para15,int para16,
+					 int para17,int para18,int para19,int para20,
+				     int para21,int para22,int para23,int para24,
+					 int para25,int para26,int para27,int para28,
+					 int para29,int para30,int para31,int para32,
+					 int para33,int para34,int para35,int para36,
+					 int para37,int para38,int para39,int para40)
 	{
 		this.setTitle("华容道_By:齐嘉亮");
 		jMenuBar1.add(jMenu1);
 		jMenu1.add(jMenubegin);
 		jMenu1.add(jMenuexit);
+		jMenubegin.add(jMenufirst);
+		jMenubegin.add(jMenusecond);
 		jMenuBar1.add(jMenuhelp);
 		jMenuhelp.add(jMenuabout);
 		jMenu1.setActionCommand("文件");
@@ -35,7 +49,12 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 		jMenuhelp.setText("帮助");
 		jMenubegin.setActionCommand("开始游戏/重新开始");
 		jMenubegin.setText("开始游戏/重新开始");
-		jMenubegin.addActionListener(this);
+		jMenufirst.setActionCommand("第一关");
+		jMenufirst.setText("第一关");
+		jMenufirst.addActionListener(this);
+		jMenusecond.setActionCommand("第二关");
+		jMenusecond.setText("第二关");
+		jMenusecond.addActionListener(this);
 		jMenuexit.setActionCommand("退出");
 		jMenuexit.setText("退出");
 		jMenuexit.addActionListener(new ExitAction());
@@ -56,16 +75,16 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 			person[i].addMouseListener(this);
 			contentPane.add(person[i]);
 		}
-		person[0].setBounds(100,50,100,100);
-		person[1].setBounds(100,200,100,50);
-		person[2].setBounds(50,50,50,100);
-		person[3].setBounds(200,50,50,100);
-		person[4].setBounds(50,150,50,100);
-		person[5].setBounds(200,150,50,100);
-		person[6].setBounds(50,250,50,50);
-		person[7].setBounds(100,250,50,50);
-		person[8].setBounds(150,250,50,50);
-		person[9].setBounds(200,250,50,50);
+		person[0].setBounds(para1,para2,para3,para4);
+		person[1].setBounds(para5,para6,para7,para8);
+		person[2].setBounds(para9,para10,para11,para12);
+		person[3].setBounds(para13,para14,para15,para16);
+		person[4].setBounds(para17,para18,para19,para20);
+		person[5].setBounds(para21,para22,para23,para24);
+		person[6].setBounds(para25,para26,para27,para28);
+		person[7].setBounds(para29,para30,para31,para32);
+		person[8].setBounds(para33,para34,para35,para36);
+		person[9].setBounds(para37,para38,para39,para40);
 		person[1].requestFocus();
 		left=new JButton();  
 		right=new JButton();
@@ -145,6 +164,12 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 			move=false;
 		if(move==true)
 			man.setLocation(x,y);
+		int posx = person[0].getBounds().x;
+		int posy = person[0].getBounds().y;
+		if(posx==100&&posy==200)
+		{
+			JOptionPane.showMessageDialog(null,"恭喜，闯关成功","提示信息",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	public void goUp(Person man) {
 		boolean move=true;
@@ -163,24 +188,36 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 			move=false;
 		if(move==true)
 			man.setLocation(x,y);
+		int posx = person[0].getBounds().x;
+		int posy = person[0].getBounds().y;
+		if(posx==100&&posy==200)
+		{
+			JOptionPane.showMessageDialog(null,"恭喜，闯关成功","提示信息",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	public void goLeft(Person man) {
-      boolean move=true;
-      Rectangle manRect=man.getBounds();
-      int x=man.getBounds().x;
-      int y=man.getBounds().y;
-      x=x-50;
-      manRect.setLocation(x,y);
-      Rectangle leftRect=left.getBounds();
-      for(int i=0;i<10;i++) { 
-         Rectangle personRect=person[i].getBounds();
-         if((manRect.intersects(personRect))&&(man.number!=i))
-              move=false;
-      }
-      if(manRect.intersects(leftRect))
-         move=false;
-      if(move==true)
-         man.setLocation(x,y);
+		boolean move=true;
+		Rectangle manRect=man.getBounds();
+		int x=man.getBounds().x;
+		int y=man.getBounds().y;
+		x=x-50;
+		manRect.setLocation(x,y);
+		Rectangle leftRect=left.getBounds();
+		for(int i=0;i<10;i++) { 
+			Rectangle personRect=person[i].getBounds();
+			if((manRect.intersects(personRect))&&(man.number!=i))
+				move=false;
+		}
+		if(manRect.intersects(leftRect))
+			move=false;
+		if(move==true)
+			man.setLocation(x,y);
+		int posx = person[0].getBounds().x;
+		int posy = person[0].getBounds().y;
+		if(posx==100&&posy==200)
+		{
+			JOptionPane.showMessageDialog(null,"恭喜，闯关成功","提示信息",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	public void goRight(Person man)  {
 		boolean move=true;
@@ -199,10 +236,26 @@ public class Huarongdao extends JFrame implements KeyListener,MouseListener,Acti
 			move=false;
 		if(move==true)
 			man.setLocation(x,y);
+		int posx = person[0].getBounds().x;
+		int posy = person[0].getBounds().y;
+		if(posx==100&&posy==200)
+		{
+			JOptionPane.showMessageDialog(null,"恭喜，闯关成功","提示信息",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	public void actionPerformed(ActionEvent e){  
-		contentPane.removeAll();
-		init();
+		if(e.getSource()==jMenufirst)
+		{
+			contentPane.removeAll();
+			init(100,50,100,100,100,200,100,50,50,50,50,100,200,50,50,100,50,150,50,100,200,150,50,100,50,250,50,50,100,250,50,50,
+			 150,250,50,50,200,250,50,50);
+		}
+		if(e.getSource()==jMenusecond)
+		{
+			contentPane.removeAll();
+			init(100,50,100,100,100,150,100,50,50,150,50,100,200,150,50,100,150,200,50,100,100,200,50,100,50,50,50,50,50,100,50,50,
+				200,50,50,50,200,100,50,50);
+		}
 	} 
 	public static void main(String args[])
 	{
@@ -247,7 +300,7 @@ class AboutDialog extends JDialog implements ActionListener
 	JPanel insetsPanel2 = new JPanel();
 	JPanel insetsPanel3 = new JPanel();
 	JButton button1 = new JButton();
-	JLabel imageLabel = new JLabel(new ImageIcon("C:/Users/GAY/Desktop/华容道游戏/wolf.jpg"));
+	JLabel imageLabel = new JLabel(new ImageIcon("C:/Users/GAY/Desktop/工程/华容道游戏/wolf.jpg"));
 	JLabel label1 = new JLabel();
 	JLabel label2 = new JLabel();
 	JLabel label3 = new JLabel();
