@@ -1,4 +1,3 @@
-
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +25,7 @@ setDefaultCloseOperation(EXIT_ON_CLOSE);
 pack();
 }
 public static void main(String[] args){
-final String fileName ="J:/Java workspace/showpic/pic.jpg"; 
+final String fileName ="src/pic.jpg"; 
       
 SwingUtilities.invokeLater(new Runnable(){
     public void run(){
