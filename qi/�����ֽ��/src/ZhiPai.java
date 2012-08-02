@@ -2,7 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-
+import java.applet.AudioClip; 
+import java.io.*; 
+import java.applet.Applet;  
+import java.net.MalformedURLException; 
+import java.net.URL; 
 public class ZhiPai extends JFrame
 {
 	public JPanel pane = null;           //定义主面板
@@ -10,13 +14,14 @@ public class ZhiPai extends JFrame
 	private JLabel piletwo[] = null;     //PileTwo   表示回收堆         此堆要有4个标签
 	private JLabel pilethree = null;     //PileThree 表示点击堆         此堆要有1个标签
 	private JLabel pilefour = null;      //PIleFour  表示点击显示堆     此堆要有1个标签
-    private Card cards[] = new Card[52];
+    private JButton ply_music = null;
+	private JButton stp_music = null;
+	private Card cards[] = new Card[52];
 	Hashtable<Point,Card> hashone = null;
 	Hashtable<Integer, Card> hashtwo=null;
 	private int c = 0;
 	private int remind=24;
 	PileOne pile = null;
-	
 	public ZhiPai()
 	{
 		setTitle("齐嘉亮_纸牌");
@@ -79,6 +84,54 @@ public class ZhiPai extends JFrame
 		getContentPane().add(pane);
 		pane.setLayout(null);
 		
+		ply_music = new JButton("点击播放背景音乐");
+		ply_music.setFont(new Font("楷体",java.awt.Font.BOLD,16));
+		ply_music.setBounds(250,500,170,35);
+		ply_music.setBackground(Color.cyan);
+		pane.add(ply_music);
+
+		stp_music = new JButton("点击停止背景音乐");
+		stp_music.setFont(new Font("楷体",java.awt.Font.BOLD,16));
+		stp_music.setBounds(450,500,170,35);
+		stp_music.setBackground(Color.cyan);
+		pane.add(stp_music);
+
+		ply_music.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e)
+			{
+				try{
+					URL url;
+					File f = new File("C:\\Users\\GAY\\Desktop\\齐嘉亮纸牌\\src\\别了夏天.wav"); 
+					url = f.toURL();
+					AudioClip au;
+					au = Applet.newAudioClip(url);
+					au.loop();
+				}catch(MalformedURLException ee)
+				{
+					ee.printStackTrace();
+				}
+			}
+		});
+
+
+
+		stp_music.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e)
+			{
+				try{
+					URL url;
+					File f = new File("C:\\Users\\GAY\\Desktop\\齐嘉亮纸牌\\src\\别了夏天.wav");
+					url = f.toURL();
+					AudioClip au;
+					au = Applet.newAudioClip(url);
+					au.stop();
+				}catch(MalformedURLException ee)
+				{
+					ee.printStackTrace();
+				}
+			}
+		});
+
 		//点击堆
 		pilethree =  new JLabel();
 		pilethree.setBounds(625,25,71,96);
