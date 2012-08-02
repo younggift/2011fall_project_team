@@ -84,6 +84,20 @@ public class ZhiPai extends JFrame
 		getContentPane().add(pane);
 		pane.setLayout(null);
 		
+		//µã»÷¶Ñ
+		pilethree =  new JLabel();
+		pilethree.setBounds(625,25,71,96);
+		pilethree.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+		pane.add(pilethree);
+		pilethree.addMouseListener(new MouseAdapter()
+		{
+			public void mouseReleased(MouseEvent m)
+			{
+				turn();				
+				//System.out.println("haha");
+			}
+		});
+
 		ply_music = new JButton("µã»÷²¥·Å±³¾°ÒôÀÖ");
 		ply_music.setFont(new Font("¿¬Ìå",java.awt.Font.BOLD,16));
 		ply_music.setBounds(250,500,170,35);
@@ -129,20 +143,6 @@ public class ZhiPai extends JFrame
 				{
 					ee.printStackTrace();
 				}
-			}
-		});
-
-		//µã»÷¶Ñ
-		pilethree =  new JLabel();
-		pilethree.setBounds(625,25,71,96);
-		pilethree.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-		pane.add(pilethree);
-		pilethree.addMouseListener(new MouseAdapter()
-		{
-			public void mouseReleased(MouseEvent m)
-			{
-				turn();				
-				//System.out.println("haha");
 			}
 		});
 
