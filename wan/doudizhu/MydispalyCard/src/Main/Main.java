@@ -7,6 +7,7 @@ package Main;
 import CardAttendant.OnePerson;
 import CardAttendant.ThreePerson;
 import CardAttendant.TwoPerson;
+import Music.Music;
 import function.CreateCard;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +35,7 @@ public class Main extends JFrame implements ActionListener,Runnable,MouseListene
    JButton  buqiang=new JButton("不抢");
    Boolean  qdizhu;
    int dizhu;  //最先出牌的是地主，牌轮转
-   
+   Music music=new Music();
    Thread th=new Thread(this);
    public static Vector Recodcard=new Vector();
     CreateCard   creat=new CreateCard();
@@ -199,10 +200,11 @@ public class Main extends JFrame implements ActionListener,Runnable,MouseListene
       {
          
           Qiangdizhu();
-           System.out.println(dizhu+"抢了地主");
+           music.play("qiang"+((int)(Math.random()*3)+1));
       }
       else if(cmd.equals("buqiang"))
       {
+         music.play("buqiang");
           new Thread(new Runnable() {
 
                 @Override
@@ -224,6 +226,7 @@ public class Main extends JFrame implements ActionListener,Runnable,MouseListene
         if(cmd.equals("buchu"))
         {
             buchu();
+             music.play("buyao"+((int)(Math.random()*3)+1));
         }
         if(cmd.equals("tuoguan"))
         {
