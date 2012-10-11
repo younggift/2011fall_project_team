@@ -1,0 +1,9 @@
+修改说明：将所有的Vector换成ArrayList（考虑到Vector已经弃用）。
+
+要求配置了环境的变量的windows环境下。
+斗地主游戏的主要功能基本实现，但还是有不足之处，欢迎批评指教。
+首次使用（在装了jdk的前提下）双击Server和Client文件的的compile文件进行编译。
+之后，首先双击Server下的Run文件，启动服务器。
+最后双击Client下的Game_run运行独立客户端，并按要求输入用户名和服务器主机的IP地址。
+
+令声明：如果是在一台计算机的运行三个游戏客户端，双击Game_Test_Explian,即可测试体验
