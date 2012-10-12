@@ -141,8 +141,8 @@ private void CreatPai()
       test=new Testing();
 
  threadArray.get(0).send("11|"+1+test.user1); 
- threadArray.get(1).send("11|"+1+test.user2); 
- threadArray.get(2).send("11|"+1+test.user3); 
+ threadArray.get(1).send("11|"+2+test.user2); 
+ threadArray.get(2).send("11|"+3+test.user3); 
 
 }
 public static void main(String[] args) 
@@ -227,11 +227,30 @@ System.out.println(s);
   String  command=st.nextToken();
   if(st.hasMoreElements())
   {
-     if(command.equals("20"))
-     {
+     if(command.equals("error"))
+	  {
+         String name=st.nextToken();
+         int num=Integer.parseInt(name);
+		 switch(num)
+			 {
+			   case 1:
+				   this.send("11|"+1+test.user1);
+			       break;
+			   case 2:
+				   this.send("11|"+2+test.user2);
+			       break;
+			   case 3:
+ 				   this.send("11|"+2+test.user2);
+			       break;
+               default:
+				   System.exit(-1);
+			 }
+	  }
+	 if(command.equals("20"))
+      {
          command0++;
-     }
-      else if(command.equals("21"))
+      }
+     else if(command.equals("21"))
       {
             
             String name1=st.nextToken();
